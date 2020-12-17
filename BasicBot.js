@@ -1,7 +1,7 @@
 // require the discord.js module
 const Discord = require("discord.js");
 const { prefix, token } = require("./config.json");
-
+require("dotenv").config();
 // create a new Discord client
 const client = new Discord.Client();
 
@@ -20,6 +20,8 @@ client.on("message", (message) => {
     message.channel.send("Pong.");
   } else if (command.startsWith(`beep`)) {
     message.channel.send("Boop.");
+  } else if (command.startsWith("gif")) {
+    message.channel.send("gif");
   } else if (command === `server`) {
     message.channel.send(
       `Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}`
@@ -80,4 +82,4 @@ client.on("message", (message) => {
   }
 });
 // login to Discord with your app's token
-client.login(token);
+client.login(process.env.token);
