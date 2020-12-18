@@ -9,7 +9,7 @@ module.exports = {
     // //www.omdbapi.com/?i=tt3896198&apikey=452f6357
     let getMovie = async () => {
       let result = await fetch(
-        `http://www.omdbapi.com/?t=${search}&apikey=452f6357`
+        `http://www.omdbapi.com/?t=${search}&plot=full&apikey=452f6357`
       );
       let json = await result.json();
       return json;
@@ -17,19 +17,17 @@ module.exports = {
     let movie = await getMovie();
     console.log(movie);
     message.channel.send(`Grab some popcorn!
-    ${movie.Title}
-    ${movie.Year}
-    ${movie.Rated}
-    ${movie.Released}
-    ${movie.Runtime}
-    ${movie.Director}
-    ${movie.Actors}
-    ${movie.Plot}
-    ${movie.Awards}
-    ${movie.Ratings[0]}
-    ${movie.Poster}
+    ${movie.Title} 
+    Rated: ${movie.Rated} 
+    Released: ${movie.Released}
+    Director: ${movie.Director}
+    Runtime: ${movie.Runtime}
+    Plot: ${movie.Plot}
+    Actors: ${movie.Actors}
+    Awards: ${movie.Awards}
     Metascore: ${movie.Metascore}/100
     imdbRating: ${movie.imdbRating}/10.0
+    ${movie.Poster}
     `);
   },
 };
