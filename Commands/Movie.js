@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const Discord = require("discord.js");
 module.exports = {
   name: "movie",
   description: "search for a movie!",
@@ -12,21 +13,28 @@ module.exports = {
       return json;
     };
     let movie = await getMovie();
+    const exampleEmbed = new Discord.MessageEmbed()
+      .setColor("#0099ff")
+      .setTitle(`${movie.Title} `)
+      .setURL("https://discord.js.org/")
+      .setDescription(`${movie.Plot}`)
+      .setThumbnail(`${movie.Poster}`)
+      .addFields(
+        { name: "Director", value: `${movie.Director}`, inline: true },
+        { name: "Actors", value: `${movie.Actors}`, inline: true },
+        // { name: "\u200B", value: "\u200B" },
+        { name: "Runtime", value: `${movie.Runtime}`, inline: true },
+        { name: "Rating", value: `${movie.Rated} `, inline: true },
+        { name: "Awards", value: `${movie.Awards}`, inline: true },
+        { name: "Released", value: `${movie.Released}`, inline: true },
+        { name: "Metascore", value: `${movie.Metascore}/100`, inline: true },
+        { name: "imdbRating", value: `${movie.imdbRating}/10.0`, inline: true }
+      )
+      .addField("Boxoffice:", `${movie.BoxOffice}`, true)
+      .setTimestamp()
+      .setFooter("Grab some Popcorn!", "https://i.imgur.com/wSTFkRM.png");
+
+    message.channel.send(exampleEmbed);
     console.log(movie);
-    message.channel.send(`Grab some popcorn!
-    ${movie.Title} 
-    Rated: ${movie.Rated} 
-    Released: ${movie.Released}
-    Director: ${movie.Director}
-    Runtime: ${movie.Runtime}
-    Plot: ${movie.Plot}
-    Actors: ${movie.Actors}
-    Awards: ${movie.Awards}
-    Metascore: ${movie.Metascore}/100
-    imdbRating: ${movie.imdbRating}/10.0
-    ${movie.Poster}
-    `);
   },
 };
-
-// need to look into how to turn this into card so it isnt a message.
