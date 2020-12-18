@@ -13,7 +13,7 @@ module.exports = {
       return json;
     };
     let movie = await getMovie();
-    const exampleEmbed = new Discord.MessageEmbed()
+    const movieEmbed = new Discord.MessageEmbed()
       .setColor("#0099ff")
       .setTitle(`${movie.Title} `)
       .setURL("https://discord.js.org/")
@@ -34,7 +34,7 @@ module.exports = {
       .setTimestamp()
       .setFooter("Grab some Popcorn!", "https://i.imgur.com/wSTFkRM.png");
 
-    message.channel.send(exampleEmbed);
-    console.log(movie);
+    message.channel.send(movieEmbed);
+    // console.log(movie);
   },
 };
