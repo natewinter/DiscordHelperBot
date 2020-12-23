@@ -1,9 +1,10 @@
 const fs = require("fs");
 const Discord = require("discord.js");
+const { Client } = require("discord.js");
 const { prefix } = require("./config.json");
 require("dotenv").config();
 
-const client = new Discord.Client();
+const client = new Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
 client.commands = new Discord.Collection();
 
 const commandFiles = fs
