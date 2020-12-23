@@ -10,13 +10,14 @@ module.exports = {
         `http://www.omdbapi.com/?t=${search}&plot=full&apikey=${process.env.omdbKey}`
       );
       let json = await result.json();
+      console.log(json);
       return json;
     };
     let movie = await getMovie();
     const movieEmbed = new Discord.MessageEmbed()
       .setColor("#0099ff")
       .setTitle(`${movie.Title} `)
-      .setURL("https://discord.js.org/")
+      .setURL(`https://www.imdb.com/title/${movie.imdbID}`)
       .setDescription(`${movie.Plot}`)
       .setThumbnail(`${movie.Poster}`)
       .addFields(
@@ -28,7 +29,11 @@ module.exports = {
         { name: "Awards", value: `${movie.Awards}`, inline: true },
         { name: "Released", value: `${movie.Released}`, inline: true },
         { name: "Metascore", value: `${movie.Metascore}/100`, inline: true },
-        { name: "imdbRating", value: `${movie.imdbRating}/10.0`, inline: true }
+        {
+          name: "imdbRating",
+          value: `${movie.imdbRating}/10.0`,
+          inline: true,
+        }
       )
       .addField("Boxoffice:", `${movie.BoxOffice}`, true)
       .setTimestamp()
