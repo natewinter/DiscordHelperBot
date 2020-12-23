@@ -12,6 +12,6 @@ module.exports = {
 
     message.channel.send(`${search} URL: ${url}`, json.results[index].url);
     let index = Math.floor(Math.random() * json.results.length);
-    // message.channel.send(json.results[index].url);
+    message.channel.send(json.results[index].url);
   },
 };
