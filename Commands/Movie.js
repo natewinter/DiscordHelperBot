@@ -14,6 +14,7 @@ module.exports = {
       return json;
     };
     let movie = await getMovie();
+    // console.log()
     const movieEmbed = new Discord.MessageEmbed()
       .setColor("#0099ff")
       .setTitle(`${movie.Title} `)

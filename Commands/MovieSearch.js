@@ -9,16 +9,18 @@ module.exports = {
       let result = await fetch(
         `http://www.omdbapi.com/?s=${find}&apikey=${process.env.omdbKey}`
       );
-      console.log(
-        result,
-        "========================================================"
-      );
+      // console.log(
+      //   result,
+      //   "========================================================"
+      // );
       let json = await result.json();
 
       return json;
     };
     let results = await getSearch();
+    let index = Math.floor(Math.random() * results.length);
+    // message.channel.send(results[index]);
     console.log(results);
-    message.channel.send(results);
+    console.log(results.Search[0].Title);
   },
 };
