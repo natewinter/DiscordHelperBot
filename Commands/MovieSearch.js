@@ -9,10 +9,7 @@ module.exports = {
       let result = await fetch(
         `http://www.omdbapi.com/?s=${find}&apikey=${process.env.omdbKey}`
       );
-      // console.log(
-      //   result,
-      //   "========================================================"
-      // );
+
       let json = await result.json();
 
       return json;
